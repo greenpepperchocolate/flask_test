@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>CSVデータ加工ツール</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>CSVデータ加工ツール</h1>
+    <p class="description">CSVファイルをアップロードすると、重複除去・欠損値集計・基本統計量を自動で算出します。</p>
+
+    <form id="upload-form">
+      <input type="file" id="file-input" name="file" accept=".csv" required>
+      <button type="submit" id="submit-btn">アップロードして加工</button>
+    </form>
+
+    <div id="loading" class="hidden">
+      <div class="spinner"></div>
+      <p>処理中です...</p>
+    </div>
+
+    <div id="error" class="hidden"></div>
+
+    <div id="result" class="hidden">
+      <h2>概要</h2>
+      <table class="summary-table">
+        <tbody>
+          <tr><th>ファイル名</th><td id="res-filename"></td></tr>
+          <tr><th>元の行数 / 列数</th><td id="res-shape"></td></tr>
+          <tr><th>重複除去件数</th><td id="res-duplicate"></td></tr>
+          <tr><th>加工後の行数</th><td id="res-rows-after"></td></tr>
+        </tbody>
+      </table>
+
+      <h2>列情報</h2>
+      <table class="table" id="columns-table">
+        <thead>
+          <tr><th>列名</th><th>型</th><th>欠損値数</th></tr>
+        </thead>
+        <tbody id="columns-body"></tbody>
+      </table>
+
+      <h2>基本統計量</h2>
+      <div id="describe-container"></div>
+
+      <h2>データプレビュー（先頭10件）</h2>
+      <div id="preview-container"></div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

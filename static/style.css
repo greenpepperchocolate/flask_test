@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+  background: #f5f6f8;
+  color: #222;
+  margin: 0;
+  padding: 40px 16px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.description {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+#upload-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+input[type="file"] {
+  flex: 1;
+  min-width: 200px;
+}
+
+button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #444;
+  margin: 24px 0;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #dbeafe;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 16px;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  border-left: 4px solid #2563eb;
+  padding-left: 8px;
+}
+
+.summary-table th,
+.summary-table td {
+  text-align: left;
+  padding: 6px 12px;
+}
+
+.summary-table th {
+  color: #555;
+  width: 160px;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  font-size: 13px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #e5e7eb;
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.table th {
+  background: #f9fafb;
+}
+
+.muted {
+  color: #888;
+}
+
+#describe-container,
+#preview-container {
+  overflow-x: auto;
+}
