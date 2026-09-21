@@ -1,4 +1,11 @@
 venv/
+.venv/
+env/
 __pycache__/
 *.pyc
+*.log
 flask.log
+.env
+.env.*
+credentials.json
+service-account.json
