@@ -7,6 +7,9 @@
 </head>
 <body>
   <div class="container">
+    <div style="text-align:right; font-size:13px; color:#666;">
+      {{ user_email }} でログイン中 ｜ <a href="{{ url_for('logout') }}">ログアウト</a>
+    </div>
     <h1>CSVデータ加工ツール</h1>
     <p class="description">CSVファイルをアップロードすると、重複除去・欠損値集計・基本統計量を自動で算出します。</p>
 
