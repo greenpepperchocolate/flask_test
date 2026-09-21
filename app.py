@@ -5,8 +5,10 @@ from flask import Flask, request, jsonify, render_template, session, redirect, u
 import pandas as pd
 from google.auth.transport import requests as google_requests
 from google.oauth2 import id_token as google_id_token
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24))
 
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "")
