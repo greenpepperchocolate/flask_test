@@ -21,6 +21,12 @@ body {
 
 h1 {
   margin-top: 0;
+  cursor: pointer;
+  width: fit-content;
+}
+
+h1:hover {
+  color: #2563eb;
 }
 
 .description {
@@ -30,15 +36,30 @@ h1 {
 
 #upload-form {
   display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 24px;
 }
 
-input[type="file"] {
-  flex: 1;
-  min-width: 200px;
+.drop-zone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 40px 20px;
+  text-align: center;
+  color: #666;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+#upload-form > button {
+  align-self: flex-start;
 }
 
 button {
@@ -102,6 +123,16 @@ h2 {
   margin-bottom: 12px;
   border-left: 4px solid #2563eb;
   padding-left: 8px;
+}
+
+#reset-btn {
+  background: #fff;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+#reset-btn:hover {
+  background: #eff6ff;
 }
 
 .summary-table th,

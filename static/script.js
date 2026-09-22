@@ -1,9 +1,45 @@
 const form = document.getElementById("upload-form");
 const fileInput = document.getElementById("file-input");
+const dropZone = document.getElementById("drop-zone");
+const dropZoneText = document.getElementById("drop-zone-text");
 const submitBtn = document.getElementById("submit-btn");
 const loading = document.getElementById("loading");
 const errorBox = document.getElementById("error");
+const uploadSection = document.getElementById("upload-section");
 const result = document.getElementById("result");
+const resetBtn = document.getElementById("reset-btn");
+const appTitle = document.getElementById("app-title");
+
+const DROP_ZONE_DEFAULT_HTML =
+  "ここにCSVファイルをドラッグ&ドロップ<br>またはクリックしてファイルを選択";
+
+dropZone.addEventListener("click", () => fileInput.click());
+
+dropZone.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  dropZone.classList.add("dragover");
+});
+
+dropZone.addEventListener("dragleave", () => {
+  dropZone.classList.remove("dragover");
+});
+
+dropZone.addEventListener("drop", (e) => {
+  e.preventDefault();
+  dropZone.classList.remove("dragover");
+  if (e.dataTransfer.files.length > 0) {
+    fileInput.files = e.dataTransfer.files;
+    updateDropZoneText();
+  }
+});
+
+fileInput.addEventListener("change", updateDropZoneText);
+
+function updateDropZoneText() {
+  if (fileInput.files.length > 0) {
+    dropZoneText.textContent = fileInput.files[0].name;
+  }
+}
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -59,8 +95,21 @@ function renderResult(data) {
   document.getElementById("describe-container").innerHTML = data.describe_html;
   document.getElementById("preview-container").innerHTML = data.preview_html;
 
+  uploadSection.classList.add("hidden");
   result.classList.remove("hidden");
 }
+
+function resetToUpload() {
+  form.reset();
+  dropZoneText.innerHTML = DROP_ZONE_DEFAULT_HTML;
+  errorBox.classList.add("hidden");
+  errorBox.textContent = "";
+  result.classList.add("hidden");
+  uploadSection.classList.remove("hidden");
+}
+
+resetBtn.addEventListener("click", resetToUpload);
+appTitle.addEventListener("click", resetToUpload);
 
 function escapeHtml(str) {
   const div = document.createElement("div");
